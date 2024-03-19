@@ -2,6 +2,9 @@
 // Dopo 30 secondi i numeri scompaiono e l'utente deve inserire, uno alla volta, i numeri che ha visto precedentemente, tramite il prompt().
 // Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei numeri da indovinare sono stati individuati.
 
+
+
+
 // Creo array con dentro 5 numeri casuali
 const randArray = generateRandomArray(5, 1, 100);
 console.log(randArray);
@@ -9,6 +12,23 @@ console.log(randArray);
 const myArray = document.querySelector('#rnd-numb');
 console.log(myArray);
 myArray.innerHTML = randArray;
+// Imposto un timer di 30 secondi al refresh della pagina
+const countdownTimer = document.querySelector('#countdown');
+let timer = 30;
+countdownTimer.innerHTML =  `Hai ancora ${timer} secondi`;
+const clock = setInterval(function() {
+    timer--;
+    countdownTimer.innerHTML =  `Hai ancora ${timer} secondi`;
+    if(timer == 0) {
+        clearInterval(clock);
+        // Al termine del timer faccio scomparire sia il timer che i numeri
+        countdownTimer.innerHTML = '';
+        myArray.innerHTML = '';
+
+    }
+}, 1000); 
+
+
 
 // FUNCTIONS
 
