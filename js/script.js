@@ -5,6 +5,10 @@
 // Creo array con dentro 5 numeri casuali
 const randArray = generateRandomArray(5, 1, 100);
 console.log(randArray);
+// Visualizzo in pagina l'array
+const myArray = document.querySelector('#rnd-numb');
+console.log(myArray);
+myArray.innerHTML = randArray;
 
 // FUNCTIONS
 
