@@ -2,33 +2,29 @@
 // Dopo 30 secondi i numeri scompaiono e l'utente deve inserire, uno alla volta, i numeri che ha visto precedentemente, tramite il prompt().
 // Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei numeri da indovinare sono stati individuati.
 
-
-
-
 // Creo array con dentro 5 numeri casuali
 const randArray = generateRandomArray(5, 1, 100);
 console.log(randArray);
 // Visualizzo in pagina l'array
-const myArray = document.querySelector('#rnd-numb');
+const myArray = document.querySelector("#rnd-numb");
 console.log(myArray);
 myArray.innerHTML = randArray;
 // Imposto un timer di 30 secondi al refresh della pagina
-const countdownTimer = document.querySelector('#countdown');
+const countdownTimer = document.querySelector("#countdown");
 let timer = 30;
-countdownTimer.innerHTML =  `Hai ancora ${timer} secondi`;
-const clock = setInterval(function() {
-    timer--;
-    countdownTimer.innerHTML =  `Hai ancora ${timer} secondi`;
-    if(timer == 0) {
-        clearInterval(clock);
-        // Al termine del timer faccio scomparire sia il timer che i numeri
-        countdownTimer.innerHTML = '';
-        myArray.innerHTML = '';
-
-    }
-}, 1000); 
-
-
+countdownTimer.innerHTML = `Hai ancora ${timer} secondi`;
+const clock = setInterval(function () {
+  timer--;
+  countdownTimer.innerHTML = `Hai ancora ${timer} secondi`;
+  if (timer == 0) {
+    clearInterval(clock);
+    // Al termine del timer faccio scomparire sia il timer che i numeri
+    countdownTimer.innerHTML = "";
+    myArray.innerHTML = "";
+  }
+}, 1000);
+// Dopo che i numeri ed il timer sono scomparsi devo far uscire 5 prompt che chiedano all'utente di inserire un numero
+const guesses = setTimeout(manyPrompts, 30500); 
 
 // FUNCTIONS
 
@@ -52,6 +48,17 @@ function generateRandomArray(arrayLength, numMin, numMax) {
   }
 
   return randomNumbersArray;
+}
+
+// Funzione che mi crea un determinato numero (num) di prompt all'utente
+// num -> un numero intero di prompt per l'utente
+// return: tanti prompt quanto è il valore di num
+function manyPrompts(num) {
+    let prompts;
+    for(let i = 0; i < 5; i++) { // al posto del 5 si deve mettere num ma per questo esercizio mi serviva 5
+        prompts = parseInt(prompt('Dimmi un numero'));
+        console.log(prompts);
+    }
 }
 
 function getRndInteger(min, max) {
